@@ -14,7 +14,3 @@ const CardContainer = ({ data }) => {
 };
 
 export default CardContainer;
-
-// {
-//
-// }
