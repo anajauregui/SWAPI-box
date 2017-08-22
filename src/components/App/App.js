@@ -7,38 +7,59 @@ export default class App extends Component {
 
 		this.state = {
 			data: null,
-      input: 'people'
+			input: 'people'
 		};
 
-		this.getSwapiData = this.getSwapiData.bind(this);
+		this.getHomeWorld = this.getHomeWorld.bind(this);
+		this.getSpecies = this.getSpecies.bind(this);
 	}
 
+	componentDidMount() {
+		const people = fetch(`https://swapi.co/api/people/`).then(data => data.json());
+		const films = fetch(`https://swapi.co/api/films/`).then(data => data.json());
+		const planets = fetch(`https://swapi.co/api/planets/`).then(data => data.json());
+		const vehicles = fetch(`https://swapi.co/api/vehicles/`).then(data => data.json());
 
-  componentDidMount() {
-    fetch(`https://swapi.co/api/people`)
-      .then(data => data.json())
-      .then(result => this.getSwapiData(result.results))
-      .then(result => this.setState({
-        data: result
-      }))
-  }
+		console.log(people);
 
-  getSwapiData(dataResult) {
-    console.log(dataResult);
-    const unresolvedHomeworlds = dataResult.map((person) => {
-      return fetch(person.homeworld).then(data => data.json())
-    })
-    const unresolvedSpecies = dataResult.map((person) => {
-      return fetch(person.species).then(data => data.json())
-    })
+		return Promise.all([people, films, planets, vehicles])
+			.then(data => this.getHomeWorld(data[0].results))
+			.then(data => this.getSpecies(data))
+			.then(data => this.setState({data: data}))
+		}
 
-    return Promise.all(unresolvedHomeworlds)
-                                      .then(result => result.map((homeworld, i) =>
-                                         Object.assign({}, dataResult[i],  { homeworld: homeworld.name, population: homeworld.population } )))
-    }
+
+	getHomeWorld(dataResult) {
+		const unresolvedHomeworlds = dataResult.map(person => {
+			return fetch(person.homeworld).then(data => data.json());
+		});
+
+		return Promise.all(unresolvedHomeworlds).then(result =>
+			result.map((homeworld, i) =>
+				Object.assign({}, dataResult[i], {
+					homeworld: homeworld.name,
+					population: homeworld.population
+				})
+			)
+		);
+	}
+
+	getSpecies(dataResult) {
+		const unresolvedSpecies = dataResult.map(person => {
+			return fetch(person.species).then(data => data.json());
+		});
+
+		return Promise.all(unresolvedSpecies).then(result =>
+			result.map((species, i) =>
+				Object.assign({}, dataResult[i], {
+					species: species.name,
+				})
+			)
+		);
+	}
 
 	render() {
-    console.log(this.state.data);
+		console.log(this.state.data);
 		return (
 			<div className="App">
 				{!this.state.data ? <p>Loading...</p> : <p>SWAPI-box</p>}
@@ -47,5 +68,5 @@ export default class App extends Component {
 					: <CardContainer data={this.state.data} />}
 			</div>
 		);
-  }
+	}
 }

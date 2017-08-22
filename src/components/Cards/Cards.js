@@ -1,13 +1,16 @@
 import React from 'react';
 
-const Cards = ({ name, homeworld }) => {
+const Cards = ({ name, homeworld, species }) => {
 	return (
 		<div>
 			<h3>
-				{name}
+				Name: {name}
 			</h3>
 			<p>
-				{homeworld}
+				Homeworld: {homeworld}
+			</p>
+			<p>
+				Species: {species}
 			</p>
 		</div>
 	);

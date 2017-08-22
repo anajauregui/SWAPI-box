@@ -3,7 +3,7 @@ import Cards from '../Cards/Cards';
 
 const CardContainer = ({ data }) => {
 	let dataArray = data.map((el, index) =>
-		<Cards key={index} name={el.name} homeworld={el.homeworld} />
+		<Cards key={index} name={el.name} homeworld={el.homeworld} species={el.species} />
 	);
 
 	return (
