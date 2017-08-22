@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
+import Cards from '../Cards/Cards';
 
-export default class CardContainer extends Component {
-  constructor() {
-    super();
-  }
+const CardContainer = ({ data }) => {
+	let dataArray = data.map((el, index) =>
+		<Cards key={index} name={el.name} homeworld={el.homeworld} />
+	);
 
-  render() {
-    return(
-      <div>
-        <Cards {...props}/>
-      </div>
-    )
-  }
-}
+	return (
+		<section className="card-container">
+			{dataArray}
+		</section>
+	);
+};
+
+export default CardContainer;
+
+// {
+//
+// }
