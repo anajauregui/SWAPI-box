@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CardContainer from '../CardContainer/CardContainer';
+import Button from '../Button/Button'
 
 export default class App extends Component {
 	constructor() {
@@ -7,13 +8,14 @@ export default class App extends Component {
 
 		this.state = {
 			data: null,
-			input: 'people'
+			display: null
 		};
 
 		this.getHomeWorld = this.getHomeWorld.bind(this);
 		this.getSpecies = this.getSpecies.bind(this);
 		this.getPlanets = this.getPlanets.bind(this);
 		this.getResidents = this.getResidents.bind(this);
+		this.handleClick = this.handleClick.bind(this);
 	}
 
 	componentDidMount() {
@@ -92,10 +94,17 @@ export default class App extends Component {
 			})
 		}
 
+	handleClick(e) {
+		this.setState({ display: e.target.title});
+	}
+
 	render() {
 		return (
 			<div className="App">
 				{!this.state.data ? <p>Loading...</p> : <p>SWAPI-box</p>}
+				<Button title='People' handleClick={this.handleClick.bind(this)} />
+				<Button title='Planets' handleClick={this.handleClick.bind(this)} />
+				<Button title='Vehicles' handleClick={this.handleClick.bind(this)} />
 				{!this.state.data
 					? <p>No Cards yet</p>
 					: <CardContainer peopleArray={this.state.data[0]} />}
