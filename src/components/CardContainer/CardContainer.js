@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Cards from '../Cards/Cards';
+import './CardContainer.css';
 
 const CardContainer = ({ peopleArray }) => {
 	let cardArray = peopleArray.map((el, index) => {

@@ -1,8 +1,9 @@
 import React from 'react';
+import './Button.css';
 
 const Button = ({ title, handleClick }) => {
   return(
-    <button onClick={handleClick} title={title}>
+    <button className='btn' onClick={handleClick} title={title}>
       {title}
     </button>
   )
