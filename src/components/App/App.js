@@ -20,13 +20,14 @@ export default class App extends Component {
 		const planets = fetch(`https://swapi.co/api/planets/`).then(data => data.json());
 		const vehicles = fetch(`https://swapi.co/api/vehicles/`).then(data => data.json());
 
-		console.log(people);
-
-		return Promise.all([people, films, planets, vehicles])
-			.then(data => this.getHomeWorld(data[0].results))
-			.then(data => this.getSpecies(data))
-			.then(data => this.setState({data: data}))
-		}
+		return Promise.all([people, planets, vehicles, films])
+			.then(data => {
+				this.getHomeWorld(data[0].results)
+				this.getSpecies(data[0].results)
+				this.getPlanets(data[1].results)
+				this.setState({ data: data })
+			})
+	}
 
 
 	getHomeWorld(dataResult) {
@@ -36,7 +37,7 @@ export default class App extends Component {
 
 		return Promise.all(unresolvedHomeworlds).then(result =>
 			result.map((homeworld, i) =>
-				Object.assign({}, dataResult[i], {
+				Object.assign(dataResult[i], {
 					homeworld: homeworld.name,
 					population: homeworld.population
 				})
@@ -51,15 +52,42 @@ export default class App extends Component {
 
 		return Promise.all(unresolvedSpecies).then(result =>
 			result.map((species, i) =>
-				Object.assign({}, dataResult[i], {
+				Object.assign(dataResult[i], {
 					species: species.name,
 				})
 			)
 		);
 	}
 
+
+  getPlanets(planetData) {
+    const planetArray = planetData.map(planet => {
+      const planetResidents = this.getResidents(planet.residents)
+      return planetResidents
+    })
+
+    return Promise.all(planetArray)
+      .then( data => {
+        return data.map( (planetsResidentsArray, i) => {
+          return Object.assign(planetData[i], { planet: planetData[i].name, terrain: planetData[i].terrain, population: planetData[i].population, climate: planetData[i].climate }, { residents: planetsResidentsArray })
+        })
+      })
+  }
+
+	getResidents(planetResidentsUrls) {
+		const unresolvedPlanetResidents = planetResidentsUrls.map( url => {
+			return fetch(url)
+			.then(data => data.json())})
+
+			return Promise.all(unresolvedPlanetResidents)
+			.then(data => {
+				return data.map( resident => {
+					return resident.name
+				})
+			})
+		}
+
 	render() {
-		console.log(this.state.data);
 		return (
 			<div className="App">
 				{!this.state.data ? <p>Loading...</p> : <p>SWAPI-box</p>}
