@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Cards = ({ name, homeworld, species }) => {
+const Cards = ({ name, homeworld, species, population }) => {
 	return (
 		<div>
 			<h3>
@@ -11,6 +11,9 @@ const Cards = ({ name, homeworld, species }) => {
 			</p>
 			<p>
 				Species: {species}
+			</p>
+			<p>
+				Population of Homeworld: {population}
 			</p>
 		</div>
 	);
