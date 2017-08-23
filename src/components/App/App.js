@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CardContainer from '../CardContainer/CardContainer';
+import MovieScroll from '../MovieScroll/MovieScroll';
 
 export default class App extends Component {
 	constructor() {
@@ -7,11 +8,11 @@ export default class App extends Component {
 
 		this.state = {
 			data: null,
-			input: 'people'
 		};
 
 		this.getHomeWorld = this.getHomeWorld.bind(this);
 		this.getSpecies = this.getSpecies.bind(this);
+    this.getPlanets = this.getPlanets.bind(this);
 	}
 
 	componentDidMount() {
@@ -27,8 +28,8 @@ export default class App extends Component {
 				this.getPlanets(data[1].results)
 				this.setState({ data: data })
 			})
+      console.log(this.state.data);
 	}
-
 
 	getHomeWorld(dataResult) {
 		const unresolvedHomeworlds = dataResult.map(person => {
@@ -59,7 +60,6 @@ export default class App extends Component {
 		);
 	}
 
-
   getPlanets(planetData) {
     const planetArray = planetData.map(planet => {
       const planetResidents = this.getResidents(planet.residents)
@@ -88,12 +88,14 @@ export default class App extends Component {
 		}
 
 	render() {
+    console.log(this.state.data);
 		return (
 			<div className="App">
-				{!this.state.data ? <p>Loading...</p> : <p>SWAPI-box</p>}
+				{/* {!this.state.data ? <p>Loading...</p> : <p>SWAPI-box</p>}
 				{!this.state.data
 					? <p>No Cards yet</p>
-					: <CardContainer data={this.state.data} />}
+					: <CardContainer data={this.state.data} />} */}
+        {this.state.data ? <MovieScroll  data={this.state.data}/> : null}
 			</div>
 		);
 	}
