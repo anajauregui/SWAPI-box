@@ -1,8 +1,9 @@
 import React from 'react';
+import './Card.css';
 
 const Cards = ({ name, homeworld, species, population }) => {
 	return (
-		<div>
+		<div className='card'>
 			<h3>
 				Name: {name}
 			</h3>

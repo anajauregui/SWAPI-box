@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import CardContainer from '../CardContainer/CardContainer';
+import Nav from '../Nav/Nav'
 import MovieScroll from '../MovieScroll/MovieScroll';
-
-import Button from '../Button/Button'
-
 
 export default class App extends Component {
 	constructor() {
@@ -104,14 +102,9 @@ export default class App extends Component {
     console.log(this.state.data);
 		return (
 			<div className="App">
-        {this.state.data ? <MovieScroll  data={this.state.data}/> : null}
-				{!this.state.data ? <p>Loading...</p> : <p>SWAPI-box</p>}
-				<Button title='People' handleClick={this.handleClick.bind(this)} />
-				<Button title='Planets' handleClick={this.handleClick.bind(this)} />
-				<Button title='Vehicles' handleClick={this.handleClick.bind(this)} />
-				{!this.state.data
-					? <p>No Cards yet</p>
-					: <CardContainer peopleArray={this.state.data[0]} />}
+        <Nav handleClick={this.handleClick}/>
+				{!this.state.data && <p>Loading...</p>}
+				{this.state.data && <CardContainer peopleArray={this.state.data[0]} />}
 			</div>
 		);
 	}
