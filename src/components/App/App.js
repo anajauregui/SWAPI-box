@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CardContainer from '../CardContainer/CardContainer';
-// import Button from '../Button/Button'
 import Nav from '../Nav/Nav'
+import MovieScroll from '../MovieScroll/MovieScroll';
 
 export default class App extends Component {
 	constructor() {
@@ -35,8 +35,8 @@ export default class App extends Component {
 						return this.setState({ data: res })
 					})
 			})
+      console.log(this.state.data);
 	}
-
 
 	getHomeWorld(dataResult) {
 		const unresolvedHomeworlds = dataResult.map(person => {
@@ -66,7 +66,6 @@ export default class App extends Component {
 			)
 		);
 	}
-
 
   getPlanets(planetData) {
     const planetArray = planetData.map(planet => {
@@ -100,13 +99,11 @@ export default class App extends Component {
 	}
 
 	render() {
+    console.log(this.state.data);
 		return (
 			<div className="App">
         <Nav handleClick={this.handleClick}/>
 				{!this.state.data && <p>Loading...</p>}
-				{/* <Button title='People' handleClick={this.handleClick.bind(this)} />
-				<Button title='Planets' handleClick={this.handleClick.bind(this)} />
-				<Button title='Vehicles' handleClick={this.handleClick.bind(this)} /> */}
 				{this.state.data && <CardContainer peopleArray={this.state.data[0]} />}
 			</div>
 		);
