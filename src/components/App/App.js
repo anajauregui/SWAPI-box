@@ -12,20 +12,25 @@ export default class App extends Component {
 
 		this.getHomeWorld = this.getHomeWorld.bind(this);
 		this.getSpecies = this.getSpecies.bind(this);
+		this.getPlanets = this.getPlanets.bind(this);
+		this.getResidents = this.getResidents.bind(this);
 	}
 
 	componentDidMount() {
 		const people = fetch(`https://swapi.co/api/people/`).then(data => data.json());
-		const films = fetch(`https://swapi.co/api/films/`).then(data => data.json());
 		const planets = fetch(`https://swapi.co/api/planets/`).then(data => data.json());
 		const vehicles = fetch(`https://swapi.co/api/vehicles/`).then(data => data.json());
+		const films = fetch(`https://swapi.co/api/films/`).then(data => data.json());
 
 		return Promise.all([people, planets, vehicles, films])
-			.then(data => {
-				this.getHomeWorld(data[0].results)
-				this.getSpecies(data[0].results)
-				this.getPlanets(data[1].results)
-				this.setState({ data: data })
+			.then(data =>{
+				const People = this.getHomeWorld(data[0].results).then(data => this.getSpecies(data))
+				const Planets = this.getPlanets(data[1].results)
+
+				return Promise.all([People, Planets, vehicles, films])
+					.then(res => {
+						return this.setState({ data: res })
+					})
 			})
 	}
 
@@ -93,7 +98,7 @@ export default class App extends Component {
 				{!this.state.data ? <p>Loading...</p> : <p>SWAPI-box</p>}
 				{!this.state.data
 					? <p>No Cards yet</p>
-					: <CardContainer data={this.state.data} />}
+					: <CardContainer peopleArray={this.state.data[0]} />}
 			</div>
 		);
 	}
