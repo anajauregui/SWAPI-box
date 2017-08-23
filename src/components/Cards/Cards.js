@@ -1,20 +1,23 @@
 import React from 'react';
 import './Card.css';
 
-const Cards = ({ name, homeworld, species, population }) => {
+const Cards = ({ name, homeworld, species, population, vehicleClass, model, passengers, terrain, climate, residents }) => {
 	return (
 		<div className='card'>
 			<h3>
-				Name: {name}
+				{name}
 			</h3>
 			<p>
-				Homeworld: {homeworld}
+				{homeworld}{terrain}{model}
 			</p>
 			<p>
-				Species: {species}
+				{species}{climate}{vehicleClass}
 			</p>
 			<p>
-				Population of Homeworld: {population}
+				{population}{passengers}
+			</p>
+			<p>
+				{residents}
 			</p>
 		</div>
 	);

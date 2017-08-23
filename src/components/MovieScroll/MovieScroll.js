@@ -1,25 +1,11 @@
 import React from 'react';
 import './MovieScroll.css';
 
-const MovieScroll = ({ data }) => {
+const MovieScroll = ({ scrollData }) => {
 
-  // const chooseRandomScroll = (array) => {
-  //   const randomized = array[Math.floor(Math.random() * array.length)];
-  //   return randomized
-  // }
-  //
-  // const movieTitle = data[3].results.map(movie => {
-  //   return movie.title
-  // })
-  // const movieYear = data[3].results.map(movie => {
-  //   return movie.release_date
-  // })
-  // const movieCrawl = data[3].results.map(movie => {
-  //   return movie.opening_crawl
-  // })
 
-  const chooseRandomScroll = data[3].results[Math.floor(Math.random() * data.length)]
-
+  const chooseRandomScroll = scrollData[3].results[Math.floor(Math.random() * scrollData.length)]
+console.log(scrollData);
   return(
     // <div className='fade'>
       <section className='star-wars'>

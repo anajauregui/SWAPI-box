@@ -7,7 +7,7 @@ const Nav = ({handleClick}) => {
     <div className='header'>
       <h1>SWAPI BOX</h1>
       <div className='btn-container'>
-        <Button title='People' handleClick={handleClick} />
+        <Button title='People' handleClick={handleClick} array='0'/>
         <Button title='Planets' handleClick={handleClick} />
         <Button title='Vehicles' handleClick={handleClick} />
       </div>

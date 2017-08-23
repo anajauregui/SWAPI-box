@@ -9,7 +9,7 @@ export default class App extends Component {
 
 		this.state = {
 			data: null,
-			display: null
+			display: 'welcome',
 		};
 
 		this.getHomeWorld = this.getHomeWorld.bind(this);
@@ -68,14 +68,14 @@ export default class App extends Component {
 	}
 
   getPlanets(planetData) {
-    const planetArray = planetData.map(planet => {
-      const planetResidents = this.getResidents(planet.residents)
-      return planetResidents
+    const unresolvedPlanetArray = planetData.map(planet => {
+      const planetResidentsNames = this.getResidents(planet.residents)
+      return planetResidentsNames
     })
 
-    return Promise.all(planetArray)
-      .then( data => {
-        return data.map( (planetsResidentsArray, i) => {
+    return Promise.all(unresolvedPlanetArray)
+      .then( residentArray => {
+        return residentArray.map( (planetsResidentsArray, i) => {
           return Object.assign(planetData[i], { planet: planetData[i].name, terrain: planetData[i].terrain, population: planetData[i].population, climate: planetData[i].climate }, { residents: planetsResidentsArray })
         })
       })
@@ -95,7 +95,7 @@ export default class App extends Component {
 		}
 
 	handleClick(e) {
-		this.setState({ display: e.target.title});
+		this.setState({ display: e.target.title });
 	}
 
 	render() {
@@ -104,7 +104,8 @@ export default class App extends Component {
 			<div className="App">
         <Nav handleClick={this.handleClick}/>
 				{!this.state.data && <p>Loading...</p>}
-				{this.state.data && <CardContainer peopleArray={this.state.data[0]} />}
+				{this.state.data && <CardContainer peopleArray={this.state.data[0]} planetArray={this.state.data[1]} vehicleArray={this.state.data[2].results} display={this.state.display} scrollData={this.state.data}/>}
+
 			</div>
 		);
 	}
