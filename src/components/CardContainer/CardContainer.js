@@ -25,7 +25,7 @@ const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scroll
 			{display === 'Planets' ? planetCardArray : null}
 			{display === 'Vehicles' ? vehicleCardArray : null}
 			{display === 'Favorites' ? favesCardArray : null}
-			{favesArray.length === 0 && display === 'Favorites' ? <p>no faves</p> : null}
+			{favesArray.length === 0 && display === 'Favorites' ? <p>No Favorites...</p> : null}
 			{display === 'welcome' && <MovieScroll scrollData={scrollData} />}
 		</section>
 	)
