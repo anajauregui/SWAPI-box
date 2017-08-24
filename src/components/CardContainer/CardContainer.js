@@ -18,7 +18,6 @@ const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scroll
 			 favesArray.map((fave, index) =>
 					<Cards key={index} fullObj={fave} addToFaves={addToFaves} favesArray={favesArray} />)
 
-
 	return (
 		<section className="card-container">
 			{display === 'People' ? peopleCardArray : null}

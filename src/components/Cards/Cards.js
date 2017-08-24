@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '../Button/Button'
-import './Card.css'
+import './Cards.css'
 
 const Cards = ({ addToFaves, fullObj, favesArray }) => {
 	return (
