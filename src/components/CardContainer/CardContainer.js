@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import Cards from '../Cards/Cards';
-import MovieScroll from '../MovieScroll/MovieScroll';
-import './CardContainer.css';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import Cards from '../Cards/Cards'
+import MovieScroll from '../MovieScroll/MovieScroll'
+import './CardContainer.css'
+import PropTypes from 'prop-types'
 
 const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scrollData, addToFaves, favesArray }) => {
 	const peopleCardArray = peopleArray.map((el, index) => {
@@ -15,9 +15,9 @@ const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scroll
 		return <Cards key={index} fullObj={el} addToFaves={addToFaves} favesArray={favesArray} />
 	})
 
-	const favesCardArray =
-			 favesArray.map((fave, index) =>
-					<Cards key={index} fullObj={fave} addToFaves={addToFaves} favesArray={favesArray} />)
+	const favesCardArray = favesArray.map((fave, index) =>
+		<Cards key={index} fullObj={fave} addToFaves={addToFaves} favesArray={favesArray} />
+	)
 
 	return (
 		<section className="card-container">
@@ -38,7 +38,7 @@ CardContainer.propTypes = {
 	display: PropTypes.string.isRequired,
 	scrollData: PropTypes.array.isRequired,
 	addToFaves: PropTypes.func.isRequired,
-	favesArray: PropTypes.array.isRequired,
+	favesArray: PropTypes.array.isRequired
 }
 
 export default CardContainer

@@ -35,7 +35,9 @@ export default class App extends Component {
 		const films = fetch(`https://swapi.co/api/films/`).then(data => (this.handleErrors(data.status), data.json()))
 
 		return Promise.all([people, planets, vehicles, films]).then(data => {
-			const People = this.getHomeWorld(data[0].results).then(data => this.getSpecies(data))
+			const People = this.getHomeWorld(data[0].results).then(
+				data => (this.handleErrors(data.status), this.getSpecies(data))
+			)
 			const Planets = this.getPlanets(data[1].results)
 
 			return Promise.all([People, Planets, vehicles, films]).then(res => {
@@ -170,11 +172,6 @@ export default class App extends Component {
 						addToFaves={this.addToFaves}
 						favesArray={this.state.favoriteCards}
 					/>}
-				{this.state.errorStatus
-					? <p>
-							{this.state.errorStatus}
-						</p>
-					: null}
 			</div>
 		)
 	}
