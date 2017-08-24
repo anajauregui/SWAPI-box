@@ -8,14 +8,14 @@
   background: #000;
 }
 
-/*.fade {
+.fade {
   position: relative;
   width: 100%;
   min-height: 60vh;
   top: -25px;
   background-image: linear-gradient(0deg, transparent, black 75%);
   z-index: 1;
-}*/
+}
 
 .star-wars {
   /* Flexbox to center the entire element on the screen */

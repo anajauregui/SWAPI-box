@@ -8,13 +8,12 @@ body {
   color: #feda4a;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  font-size: 2em;
   margin: auto;
 }
 
 .load-img {
   display: flex;
-  height: 200px;
-  margin: 20px;
-  width: 200px;
+  height: 150px;
+  width: 150px;
 }

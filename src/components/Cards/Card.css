@@ -2,11 +2,9 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  font-size: 0.70em;
-  height: 180px;
   justify-content: center;
-  margin: 20px;
-  width: 175px;
+  margin: 20px 10px 10px 5px;
+  width: 250px;
 
   border-width: 2px;
   border-style: outset;
@@ -20,24 +18,31 @@
 }
 
 .fav-btn {
+  align-items: center;
   background: none;
   border-radius: 50%;
   color: #fff;
-  font-size: 3em;
-  height: 36px;
+  display: flex;
+  font-size: 2em;
+  height: 30px;
+  justify-content: center;
   outline: none;
   position: relative;
-  right: -50px;
+  right: -90px;
+  top: 5px;
 }
 
 .fav-btn:hover {
   border-color: #feda4a;
   cursor: pointer;
-  /*color: red;*/
 }
 
 .card-info {
-  margin-bottom: 15px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75em;
+  margin: 10px;
 }
 
 .card-info h2 {

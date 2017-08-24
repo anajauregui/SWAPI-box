@@ -11,9 +11,14 @@
 }
 
 .fav-btn-container {
-  position: fixed;
-  right: 15px;
-  top: 15px;
+  position: relative;
+  right: -310px;
+  top: -120px;
+}
+
+.btn:hover {
+  border-color: #feda4a;
+  cursor: pointer;
 }
 
 .btn-container {

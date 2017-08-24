@@ -5,10 +5,10 @@ import './Card.css'
 const Cards = ({ addToFaves, fullObj, favesArray }) => {
 	return (
 		<div className={favesArray.includes(fullObj) ? 'card fav-card' : 'card' }>
-			<button className='fav-btn' onClick={e => addToFaves(fullObj)}>
-				*
-			</button>
 			<div className='card-info'>
+				<button className='fav-btn' onClick={e => addToFaves(fullObj)}>
+					*
+				</button>
 				<h2>
 					{fullObj.name}
 				</h2>
