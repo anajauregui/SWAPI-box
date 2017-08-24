@@ -20,7 +20,7 @@ export default class App extends Component {
 		this.getResidents = this.getResidents.bind(this)
 		this.handleClick = this.handleClick.bind(this)
 		this.addToFaves = this.addToFaves.bind(this)
-    this.removeFromFaves = this.removeFromFaves.bind(this)
+		this.removeFromFaves = this.removeFromFaves.bind(this)
 	}
 
 	componentDidMount() {
@@ -108,27 +108,29 @@ export default class App extends Component {
 	}
 
 	addToFaves(fullObj) {
-    let faves = [...this.state.favoriteCards]
+		let faves = [...this.state.favoriteCards]
 
-    if(faves.includes(fullObj)) {
-      this.removeFromFaves(fullObj)
-    } else {
-      faves.push(fullObj)
-      this.setState({ favoriteCards: faves })
-    }
+		if (faves.includes(fullObj)) {
+			this.removeFromFaves(fullObj)
+		} else {
+			faves.push(fullObj)
+			this.setState({ favoriteCards: faves, favesLength: true })
+		}
 	}
 
-  removeFromFaves(fullObj) {
-    let faves = [...this.state.favoriteCards]
-    let filteredArray = faves.filter(obj => obj !== fullObj)
-    this.setState({ favoriteCards: filteredArray })
-  }
+	removeFromFaves(fullObj) {
+		let faves = [...this.state.favoriteCards]
+		let filteredArray = faves.filter(obj => obj !== fullObj)
+		this.setState({ favoriteCards: filteredArray })
+	}
 
 	render() {
 		return (
 			<div className="App">
+
 				<Nav handleClick={this.handleClick} display={this.state.display} data={this.state.data}/>
 				{!this.state.data && <div className='loading' ><p>Loading...</p><img className='load-img' src={`http://i.imgur.com/NAJB247.gif?noredirect`}/></div>}
+
 				{this.state.data &&
 					<CardContainer
 						peopleArray={this.state.data[0]}
@@ -138,6 +140,7 @@ export default class App extends Component {
 						scrollData={this.state.data}
 						addToFaves={this.addToFaves}
 						favesArray={this.state.favoriteCards}
+						favesLength={this.state.favesLength}
 					/>}
 			</div>
 		)
