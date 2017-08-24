@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import Cards from '../Cards/Cards'
-import MovieScroll from '../MovieScroll/MovieScroll'
-import './CardContainer.css'
+import React, { Component } from 'react';
+import Cards from '../Cards/Cards';
+import MovieScroll from '../MovieScroll/MovieScroll';
+import './CardContainer.css';
+import PropTypes from 'prop-types';
 
 const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scrollData, addToFaves, favesArray }) => {
 	const peopleCardArray = peopleArray.map((el, index) => {
@@ -28,6 +29,16 @@ const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scroll
 			{display === 'welcome' && <MovieScroll scrollData={scrollData} />}
 		</section>
 	)
+}
+
+CardContainer.propTypes = {
+	peopleArray: PropTypes.array.isRequired,
+	planetArray: PropTypes.array.isRequired,
+	vehicleArray: PropTypes.array.isRequired,
+	display: PropTypes.string.isRequired,
+	scrollData: PropTypes.array.isRequired,
+	addToFaves: PropTypes.func.isRequired,
+	favesArray: PropTypes.array.isRequired,
 }
 
 export default CardContainer

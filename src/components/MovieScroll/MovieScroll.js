@@ -1,5 +1,6 @@
 import React from 'react';
 import './MovieScroll.css';
+import PropTypes from 'prop-types';
 
 const MovieScroll = ({ scrollData }) => {
 
@@ -19,6 +20,10 @@ console.log(scrollData);
       </section>
     // </div>
   )
+}
+
+MovieScroll.propTypes = {
+  scrollData: PropTypes.object.isRequired,
 }
 
 export default MovieScroll;

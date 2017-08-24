@@ -129,7 +129,7 @@ export default class App extends Component {
 			<div className="App">
 
 				<Nav handleClick={this.handleClick} display={this.state.display} data={this.state.data}/>
-				{!this.state.data && <div className='loading' ><p>Loading...</p><img className='load-img' src={`http://i.imgur.com/NAJB247.gif?noredirect`}/></div>}
+				{!this.state.data && <div className='loading' ><p>Loading...</p><img className='load-img' src={`http://i.imgur.com/NAJB247.gif?noredirect`} alt='BB8 waiting for content load'/></div>}
 
 				{this.state.data &&
 					<CardContainer

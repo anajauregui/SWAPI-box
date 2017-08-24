@@ -1,6 +1,6 @@
-import React from 'react'
-import Button from '../Button/Button'
-import './Cards.css'
+import React from 'react';
+import './Cards.css';
+import PropTypes from 'prop-types';
 
 const Cards = ({ addToFaves, fullObj, favesArray }) => {
 	return (
@@ -27,6 +27,12 @@ const Cards = ({ addToFaves, fullObj, favesArray }) => {
 			</div>
 		</div>
 	)
+}
+
+Cards.propTypes = {
+	addToFaves: PropTypes.func,
+	fullObj: PropTypes.object.isRequired,
+	favesArray: PropTypes.array.isRequired,
 }
 
 export default Cards

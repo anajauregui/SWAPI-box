@@ -1,6 +1,7 @@
-import React from 'react'
-import Button from '../Button/Button'
-import './Nav.css'
+import React from 'react';
+import Button from '../Button/Button';
+import './Nav.css';
+import PropTypes from 'prop-types';
 
 const Nav = ({ handleClick, display, data }) => {
 	return (
@@ -10,12 +11,16 @@ const Nav = ({ handleClick, display, data }) => {
 				<Button title="People" handleClick={handleClick} display={display}/>
 				<Button title="Planets" handleClick={handleClick} display={display}/>
 				<Button title="Vehicles" handleClick={handleClick} display={display}/>
-			</div>}
-			<div className="fav-btn-container">
 				<Button title="Favorites" handleClick={handleClick} display={display}/>
-			</div>
+			</div>}
 		</div>
 	)
+}
+
+Nav.propTypes = {
+	handleClick: PropTypes.func.isRequired,
+	display: PropTypes.string.isRequired,
+	data: PropTypes.array,
 }
 
 export default Nav;
