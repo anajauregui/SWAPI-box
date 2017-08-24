@@ -3,3 +3,6 @@
   background: none;
   border-radius: 10px;
 }
+.selected-btn {
+  background-color: yellow;
+}

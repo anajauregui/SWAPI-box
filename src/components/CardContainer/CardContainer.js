@@ -9,11 +9,8 @@ const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scroll
 			<Cards
 				key={index}
 				fullObj={el}
-				name={el.name}
-				homeworld={`Homeworld: ${el.homeworld}`}
-				species={`Species: ${el.species}`}
-				population={`Population: ${el.population}`}
 				addToFaves={addToFaves}
+				favesArray={favesArray}
 			/>
 		)
 	})
@@ -22,12 +19,8 @@ const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scroll
 			<Cards
 				key={index}
 				fullObj={el}
-				name={el.name}
-				terrain={`Terrain: ${el.terrain}`}
-				population={`Population: ${el.population}`}
-				climate={`Climate: ${el.climate}`}
-				residents={`Famous Residents: ${el.residents}`}
 				addToFaves={addToFaves}
+				favesArray={favesArray}
 			/>
 		)
 	})
@@ -36,16 +29,14 @@ const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scroll
 			<Cards
 				key={index}
 				fullObj={el}
-				name={el.name}
-				vehicleClass={`Class: ${el.vehicle_class}`}
-				model={`Model: ${el.model}`}
-				passengers={`# Passengers: ${el.passengers}`}
 				addToFaves={addToFaves}
+				favesArray={favesArray}
 			/>
 		)
 	})
 
-	const favesCardArray = favesArray.map((fave, index) => <Cards key={index} fullObj={fave} />)
+	const favesCardArray = favesArray.lenth > 0 ? favesArray.map((fave, index) => <Cards key={index} fullObj={fave} addToFaves={addToFaves} favesArray={favesArray}/>) : <p>No Favorites!!!</p>
+
 
 	return (
 		<section className="card-container">
@@ -53,6 +44,7 @@ const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scroll
 			{display === 'Planets' ? planetCardArray : null}
 			{display === 'Vehicles' ? vehicleCardArray : null}
 			{display === 'Favorites' ? favesCardArray : null}
+			{/* {(!favesArray && display === 'Favorites') && <p>No Favorites!!!</p>  } */}
 			{display === 'welcome' && <MovieScroll scrollData={scrollData} />}
 		</section>
 	)
