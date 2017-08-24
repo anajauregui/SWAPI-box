@@ -2,6 +2,7 @@
   align-items: center;
   display: flex;
   flex-direction: column;
+  font-size: 1.2em;
   justify-content: center;
   margin: 20px 10px 10px 5px;
   width: 250px;
@@ -11,6 +12,11 @@
   border-color: buttonface;
   border-image: initial;
   border-radius: 10px;
+}
+
+.card:hover {
+  transform: scale(1.1);
+  transition-duration: .5s;
 }
 
 .fav-card {
