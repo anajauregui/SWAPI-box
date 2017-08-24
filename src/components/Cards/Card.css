@@ -3,10 +3,43 @@
   display: flex;
   flex-direction: column;
   font-size: 0.70em;
+  height: 180px;
   justify-content: center;
-  margin: 5px;
+  margin: 20px;
+  width: 175px;
+
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  border-image: initial;
+  border-radius: 10px;
 }
 
 .fav-card {
-  background-color: yellow;
+  border-color: #feda4a;
+}
+
+.fav-btn {
+  background: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 3em;
+  height: 36px;
+  outline: none;
+  position: relative;
+  right: -50px;
+}
+
+.fav-btn:hover {
+  border-color: #feda4a;
+  cursor: pointer;
+  /*color: red;*/
+}
+
+.card-info {
+  margin-bottom: 15px;
+}
+
+.card-info h2 {
+  color: #feda4a;
 }

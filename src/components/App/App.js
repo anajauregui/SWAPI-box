@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import CardContainer from '../CardContainer/CardContainer'
 import Nav from '../Nav/Nav'
 import MovieScroll from '../MovieScroll/MovieScroll'
+import './App.css';
 
 export default class App extends Component {
 	constructor() {
@@ -127,7 +128,7 @@ export default class App extends Component {
 		return (
 			<div className="App">
 				<Nav handleClick={this.handleClick} display={this.state.display}/>
-				{!this.state.data && <p>Loading...</p>}
+				{!this.state.data && <div className='loading' ><p>Loading...</p><img className='load-img' src={`http://i.imgur.com/NAJB247.gif?noredirect`}/></div>}
 				{this.state.data &&
 					<CardContainer
 						peopleArray={this.state.data[0]}

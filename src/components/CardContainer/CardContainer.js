@@ -35,7 +35,7 @@ const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scroll
 		)
 	})
 
-	const favesCardArray = favesArray.lenth > 0 ? favesArray.map((fave, index) => <Cards key={index} fullObj={fave} addToFaves={addToFaves} favesArray={favesArray}/>) : <p>No Favorites!!!</p>
+	const favesCardArray = favesArray.map((fave, index) => <Cards key={index} fullObj={fave} addToFaves={addToFaves} favesArray={favesArray}/>) 
 
 
 	return (

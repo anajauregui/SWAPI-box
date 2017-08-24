@@ -5,6 +5,17 @@
   justify-content: center;
 }
 
+.header h1 {
+  color: #feda4a;
+  font-size: 3em;
+}
+
+.fav-btn-container {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+}
+
 .btn-container {
   display: flex;
   justify-content: space-between;

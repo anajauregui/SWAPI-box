@@ -1,8 +1,10 @@
 .btn {
-  border: .5 solid black;
+  /*border: .5 solid black;*/
   background: none;
   border-radius: 10px;
+  color: #fff;
+  outline: none;
 }
 .selected-btn {
-  background-color: yellow;
+  border-color: #feda4a;
 }

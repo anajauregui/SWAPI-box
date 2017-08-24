@@ -6,12 +6,12 @@ const Cards = ({ addToFaves, fullObj, favesArray }) => {
 	return (
 		<div className={favesArray.includes(fullObj) ? 'card fav-card' : 'card' }>
 			<button className='fav-btn' onClick={e => addToFaves(fullObj)}>
-				Favorites
+				*
 			</button>
-			<h3>
-				{fullObj.name}
-			</h3>
-
+			<div className='card-info'>
+				<h2>
+					{fullObj.name}
+				</h2>
 				{fullObj.homeworld ? <p>Homeworld: {fullObj.homeworld}</p> : null}
 				{fullObj.terrain ? <p>Terrain: {fullObj.terrain}</p> : null}
 				{fullObj.model ? <p>Model: {fullObj.model}</p> : null}
@@ -24,7 +24,7 @@ const Cards = ({ addToFaves, fullObj, favesArray }) => {
 				{fullObj.passengers ? <p>Passengers: {fullObj.passengers}</p> : null}
 
 				{fullObj.residents ? <p>Residents: {fullObj.residents}</p> : null}
-
+			</div>
 		</div>
 	)
 }
