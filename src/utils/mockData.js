@@ -38,18 +38,18 @@ export const mockFullData = [
 	}
 ]
 
-export const mockedScroll = {
+export const mockScroll = {
 	results: [
 		{
 			title: 'A New Hope',
 			episode_id: 4,
-			opening_crawl: 'string',
+			opening_crawl: 'STAR WARS IS NOT THAT COOL',
 			release_date: '1977-05-25'
 		}
 	]
 }
 
-export const mockedPeopleArray = {
+export const mockPeopleArray = {
 	results: [
 		{
 			name: 'Luke Skywalker',
@@ -59,7 +59,7 @@ export const mockedPeopleArray = {
 	]
 }
 
-export const mockedPlanetArray = {
+export const mockPlanetArray = {
 	results: [
 		{
 			name: 'Alderaan',
@@ -71,7 +71,7 @@ export const mockedPlanetArray = {
 	]
 }
 
-export const mockedVehicleArray = {
+export const mockVehicleArray = {
 	results: [
 		{
 			name: 'Sand Crawler',
@@ -83,7 +83,7 @@ export const mockedVehicleArray = {
 	]
 }
 
-export const mockedHomeworld = {
+export const mockHomeworld = {
 	name: 'Tatooine',
 	climate: 'arid',
 	terrain: 'desert',
@@ -91,11 +91,11 @@ export const mockedHomeworld = {
 	residents: ['http://swapi.co/api/people/1/']
 }
 
-export const mockedSpecies = {
+export const mockSpecies = {
 	name: 'Human'
 }
 
-export const mockedPerson = [
+export const mockPerson = [
 	{
 		name: 'Luke Skywalker',
 		homeworld: 'http://swapi.co/api/planets/1/',
@@ -103,4 +103,4 @@ export const mockedPerson = [
 	}
 ]
 
-export const mockedResidentsArray = ['Leia Organa', 'Bail Prestor Organa', 'Raymus Antilles']
+export const mockResidentsArray = ['Leia Organa', 'Bail Prestor Organa', 'Raymus Antilles']

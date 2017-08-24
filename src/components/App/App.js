@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import CardContainer from '../CardContainer/CardContainer'
 import Nav from '../Nav/Nav'
 import MovieScroll from '../MovieScroll/MovieScroll'
-import './App.css';
+import './App.css'
 
 export default class App extends Component {
 	constructor() {
@@ -11,7 +11,8 @@ export default class App extends Component {
 		this.state = {
 			data: null,
 			display: 'welcome',
-			favoriteCards: []
+			favoriteCards: [],
+			errorStatus: null
 		}
 
 		this.getHomeWorld = this.getHomeWorld.bind(this)
@@ -24,10 +25,18 @@ export default class App extends Component {
 	}
 
 	componentDidMount() {
-		const people = fetch(`https://swapi.co/api/people/`).then(data => data.json())
-		const planets = fetch(`https://swapi.co/api/planets/`).then(data => data.json())
-		const vehicles = fetch(`https://swapi.co/api/vehicles/`).then(data => data.json())
-		const films = fetch(`https://swapi.co/api/films/`).then(data => data.json())
+		const people = fetch(`https://swapi.co/api/people/`).then(data => data.json()).catch().catch(error => {
+			this.setState({ errorStatus: 'THIS IS NOT THE DATA YOU ARE LOOKING FOR' })
+		})
+		const planets = fetch(`https://swapi.co/api/planets/`).then(data => data.json()).catch(error => {
+			this.setState({ errorStatus: 'THIS IS NOT THE DATA YOU ARE LOOKING FOR' })
+		})
+		const vehicles = fetch(`https://swapi.co/api/vehicles/`).then(data => data.json()).catch(error => {
+			this.setState({ errorStatus: 'THIS IS NOT THE DATA YOU ARE LOOKING FOR' })
+		})
+		const films = fetch(`https://swapi.co/api/films/`).then(data => data.json()).catch(error => {
+			this.setState({ errorStatus: 'THIS IS NOT THE DATA YOU ARE LOOKING FOR' })
+		})
 
 		return Promise.all([people, planets, vehicles, films]).then(data => {
 			const People = this.getHomeWorld(data[0].results).then(data => this.getSpecies(data))
@@ -37,6 +46,7 @@ export default class App extends Component {
 				return this.setState({ data: res })
 			})
 		})
+
 		console.log(this.state.data)
 	}
 
@@ -140,7 +150,6 @@ export default class App extends Component {
 						scrollData={this.state.data}
 						addToFaves={this.addToFaves}
 						favesArray={this.state.favoriteCards}
-						favesLength={this.state.favesLength}
 					/>}
 			</div>
 		)
