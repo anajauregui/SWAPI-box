@@ -5,6 +5,22 @@
   justify-content: center;
 }
 
+.header h1 {
+  color: #feda4a;
+  font-size: 3em;
+}
+
+.fav-btn-container {
+  position: relative;
+  right: -310px;
+  top: -120px;
+}
+
+.btn:hover {
+  border-color: #feda4a;
+  cursor: pointer;
+}
+
 .btn-container {
   display: flex;
   justify-content: space-between;

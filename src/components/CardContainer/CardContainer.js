@@ -20,7 +20,7 @@ const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scroll
 					<Cards key={index} fullObj={fave} addToFaves={addToFaves} favesArray={favesArray} />
 				)
 			: <p>No Favorites!!!</p>
-
+  
 	return (
 		<section className="card-container">
 			{display === 'People' ? peopleCardArray : null}

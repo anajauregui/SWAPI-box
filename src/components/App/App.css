@@ -1,0 +1,19 @@
+body {
+  background: #000;
+  color: #fff;
+}
+
+.loading {
+  align-items: center;
+  color: #feda4a;
+  display: flex;
+  flex-direction: column;
+  font-size: 2em;
+  margin: auto;
+}
+
+.load-img {
+  display: flex;
+  height: 150px;
+  width: 150px;
+}
