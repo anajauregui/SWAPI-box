@@ -4,6 +4,7 @@ import App from './App'
 import { shallow, mount } from 'enzyme'
 import fetchMock from 'fetch-mock'
 import {
+	mockFullData,
 	mockPeopleArray,
 	mockHomeworld,
 	mockSpecies,
@@ -19,26 +20,59 @@ describe('App', () => {
 	beforeEach(() => {
 		fetchMock.get('https://swapi.co/api/', {
 			status: 200,
+			body: mockFullData
+		})
+
+		fetchMock.get('https://swapi.co/api/people', {
+			status: 200,
 			body: mockPeopleArray
 		})
+
+		fetchMock.get('https://swapi.co/api/planets', {
+			status: 200,
+			body: mockPeopleArray
+		})
+
+		fetchMock.get('https://swapi.co/api/vehicles', {
+			status: 200,
+			body: mockPeopleArray
+		})
+
+		fetchMock.get('https://swapi.co/api/films', {
+			status: 200,
+			body: mockPeopleArray
+		})
+
 		wrapper = shallow(<App />)
-		console.log(wrapper)
 	})
 
 	afterEach(() => {
 		fetchMock.restore()
 	})
 
-	it('renders without crashing', () => {
-		const div = document.createElement('div')
-		ReactDOM.render(<App />, div)
+	it('renders to the page', () => {
+		expect(wrapper.find('div.App').length).toEqual(1)
+	})
+
+	it('renders a loading screen before data is retrieved from API', () => {
+		expect(wrapper.find('div.loading').length).toEqual(1)
 	})
 
 	it('has a default state', () => {
-		expect(wrapper.state.data).toEqual(null)
-		expect(wrapper.state.display).toEqual('welcome')
-		expect(wrapper.state.favoriteCards).toEqual([])
+		expect(wrapper.state().data).toEqual(null)
+		expect(wrapper.state().display).toEqual('welcome')
+		expect(wrapper.state().favoriteCards).toEqual([])
 	})
 
-	it('changes state when data is retrieved from API', () => {})
+	it('changes state when data is retrieved from API', () => {
+		let mounted = mount(<App />)
+		expect(mounted.state().data).toEqual(mockFullData)
+		expect(mounted.state().display).toEqual('welcome')
+		expect(mounted.state().favoriteCards).toEqual([])
+	})
+
+	it('displays a CardContainer componenet when data is retrieved from API', () => {
+		expect(mounted.state().display).toEqual('welcome')
+		expect(mounted.find('CardContainer').length).toEqual(1)
+	})
 })

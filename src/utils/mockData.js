@@ -1,37 +1,41 @@
 export const mockFullData = [
-	{[
-    name: 'Luke Skywalker',
-    homeworld: 'Tatooine',
-    species: 'Human'
-  ]},
-	{[
-    name: 'Alderaan',
-    climate: 'temperate',
-    terrain: 'grasslands, mountains',
-    population: '2000000000',
-    residents: ['Your Mom', 'My Butt']
-  ]
-},
-{
-  results: [
-    {
-      name: 'Sand Crawler',
-      model: 'Digger Crawler',
-      crew: '46',
-      passengers: '30',
-      vehicle_class: 'wheeled'
-    }
-  ]
-}, {
-	results: [
+	[
 		{
-			title: 'A New Hope',
-			episode_id: 4,
-			opening_crawl: 'string',
-			release_date: '1977-05-25'
+			name: 'Luke Skywalker',
+			homeworld: 'Tatooine',
+			species: 'Human'
 		}
-	]
-}
+	],
+	[
+		{
+			name: 'Alderaan',
+			climate: 'temperate',
+			terrain: 'grasslands, mountains',
+			population: '2000000000',
+			residents: ['Your Mom', 'My Butt']
+		}
+	],
+	{
+		results: [
+			{
+				name: 'Sand Crawler',
+				model: 'Digger Crawler',
+				crew: '46',
+				passengers: '30',
+				vehicle_class: 'wheeled'
+			}
+		]
+	},
+	{
+		results: [
+			{
+				title: 'A New Hope',
+				episode_id: 4,
+				opening_crawl: 'string',
+				release_date: '1977-05-25'
+			}
+		]
+	}
 ]
 
 export const mockedScroll = {
