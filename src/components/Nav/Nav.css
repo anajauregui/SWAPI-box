@@ -10,12 +10,6 @@
   font-size: 3em;
 }
 
-.fav-btn-container {
-  position: relative;
-  right: -310px;
-  top: -120px;
-}
-
 .btn {
   border-radius: 15px;
   font-size: 1.2em;
