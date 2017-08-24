@@ -31,17 +31,17 @@ describe('App', () => {
 
 		fetchMock.get('https://swapi.co/api/planets', {
 			status: 200,
-			body: mockPeopleArray
+			body: mockPlanetsArray
 		})
 
 		fetchMock.get('https://swapi.co/api/vehicles', {
 			status: 200,
-			body: mockPeopleArray
+			body: mockVehicles
 		})
 
 		fetchMock.get('https://swapi.co/api/films', {
 			status: 200,
-			body: mockPeopleArray
+			body: mockFilms
 		})
 
 		wrapper = shallow(<App />)
@@ -85,5 +85,15 @@ describe('App', () => {
 		})
 		mounted = mount(<App />)
 		expect(mounted.state().errorStatus).toEqual('THS IS NOT THE DATA YOU ARE LOOKING FOR')
+	})
+
+	it('should call the API', () => {
+		mounted = mount(<App />)
+		this.setTiexpect(fetchMock.called()).toEqual(true)
+	})
+
+	it('should call SWAPI', () => {
+		mounted = <App />
+		expect(fetchMock.called('https://swapi.co/api/people/')).toEqual(true)
 	})
 })
