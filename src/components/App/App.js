@@ -22,21 +22,17 @@ export default class App extends Component {
 		this.handleClick = this.handleClick.bind(this)
 		this.addToFaves = this.addToFaves.bind(this)
 		this.removeFromFaves = this.removeFromFaves.bind(this)
+		this.handleErrors = this.handleErrors.bind(this)
 	}
 
 	componentDidMount() {
-		const people = fetch(`https://swapi.co/api/people/`).then(data => data.json()).catch().catch(error => {
-			this.setState({ errorStatus: 'THIS IS NOT THE DATA YOU ARE LOOKING FOR' })
-		})
-		const planets = fetch(`https://swapi.co/api/planets/`).then(data => data.json()).catch(error => {
-			this.setState({ errorStatus: 'THIS IS NOT THE DATA YOU ARE LOOKING FOR' })
-		})
-		const vehicles = fetch(`https://swapi.co/api/vehicles/`).then(data => data.json()).catch(error => {
-			this.setState({ errorStatus: 'THIS IS NOT THE DATA YOU ARE LOOKING FOR' })
-		})
-		const films = fetch(`https://swapi.co/api/films/`).then(data => data.json()).catch(error => {
-			this.setState({ errorStatus: 'THIS IS NOT THE DATA YOU ARE LOOKING FOR' })
-		})
+		const people = fetch(`https://swapi.co/api/people/`).then(data => (this.handleErrors(data.status), data.json()))
+
+		const planets = fetch(`https://swapi.co/api/planets/`).then(data => (this.handleErrors(data.status), data.json()))
+
+		const vehicles = fetch(`https://swapi.co/api/vehicles/`).then(data => (this.handleErrors(data.status), data.json()))
+
+		const films = fetch(`https://swapi.co/api/films/`).then(data => (this.handleErrors(data.status), data.json()))
 
 		return Promise.all([people, planets, vehicles, films]).then(data => {
 			const People = this.getHomeWorld(data[0].results).then(data => this.getSpecies(data))
@@ -134,12 +130,35 @@ export default class App extends Component {
 		this.setState({ favoriteCards: filteredArray })
 	}
 
+	handleErrors(status) {
+		if (status === 400) {
+			this.setState({ errorStatus: 'Bad Request This Is' })
+		} else if (status === 404) {
+			this.setState({ errorStatus: 'Found, the Site Was Not' })
+		} else if (status === 408) {
+			this.setState({ errorStatus: 'Timed Out The Request Did' })
+		} else if (status === 429) {
+			this.setState({ errorStatus: 'Too Many API Calls You Made' })
+		} else if (status >= 500) {
+			this.setState({
+				errorStatus: 'No Good The Server Is'
+			})
+		}
+	}
+
 	render() {
 		return (
 			<div className="App">
-
-				<Nav handleClick={this.handleClick} display={this.state.display} data={this.state.data}/>
-				{!this.state.data && <div className='loading' ><p>Loading...</p><img className='load-img' src={`http://i.imgur.com/NAJB247.gif?noredirect`} alt='BB8 waiting for content load'/></div>}
+				<Nav handleClick={this.handleClick} display={this.state.display} data={this.state.data} />
+				{!this.state.data &&
+					<div className="loading">
+						<p>Loading...</p>
+						<img
+							className="load-img"
+							src={`http://i.imgur.com/NAJB247.gif?noredirect`}
+							alt="BB8 waiting for content load"
+						/>
+					</div>}
 
 				{this.state.data &&
 					<CardContainer
@@ -151,6 +170,11 @@ export default class App extends Component {
 						addToFaves={this.addToFaves}
 						favesArray={this.state.favoriteCards}
 					/>}
+				{this.state.errorStatus
+					? <p>
+							{this.state.errorStatus}
+						</p>
+					: null}
 			</div>
 		)
 	}
