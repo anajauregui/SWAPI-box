@@ -16,6 +16,7 @@ import {
 
 describe('App', () => {
 	let wrapper
+	let mounted
 
 	beforeEach(() => {
 		fetchMock.get('https://swapi.co/api/', {
@@ -65,7 +66,7 @@ describe('App', () => {
 	})
 
 	it('changes state when data is retrieved from API', () => {
-		let mounted = mount(<App />)
+		mounted = mount(<App />)
 		expect(mounted.state().data).toEqual(mockFullData)
 		expect(mounted.state().display).toEqual('welcome')
 		expect(mounted.state().favoriteCards).toEqual([])
@@ -74,5 +75,15 @@ describe('App', () => {
 	it('displays a CardContainer componenet when data is retrieved from API', () => {
 		expect(mounted.state().display).toEqual('welcome')
 		expect(mounted.find('CardContainer').length).toEqual(1)
+	})
+
+	it('displays an error if API fails to return data', () => {
+		expect(wrapper.state().errorStatus).toEqual(null)
+		fetchMock.get('https://swapi.co/api/', {
+			status: 500,
+			body: null
+		})
+		mounted = mount(<App />)
+		expect(mounted.state().errorStatus).toEqual('THS IS NOT THE DATA YOU ARE LOOKING FOR')
 	})
 })
