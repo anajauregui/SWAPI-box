@@ -15,19 +15,17 @@ const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scroll
 	})
 
 	const favesCardArray =
-		favesArray.lenth !== 0
-			? favesArray.map((fave, index) =>
-					<Cards key={index} fullObj={fave} addToFaves={addToFaves} favesArray={favesArray} />
-				)
-			: <p>No Favorites!!!</p>
-  
+			 favesArray.map((fave, index) =>
+					<Cards key={index} fullObj={fave} addToFaves={addToFaves} favesArray={favesArray} />)
+
+
 	return (
 		<section className="card-container">
 			{display === 'People' ? peopleCardArray : null}
 			{display === 'Planets' ? planetCardArray : null}
 			{display === 'Vehicles' ? vehicleCardArray : null}
 			{display === 'Favorites' ? favesCardArray : null}
-			{/* {(!favesArray && display === 'Favorites') && <p>No Favorites!!!</p>  } */}
+			{favesArray.length === 0 && display === 'Favorites' ? <p>no faves</p> : null}
 			{display === 'welcome' && <MovieScroll scrollData={scrollData} />}
 		</section>
 	)
