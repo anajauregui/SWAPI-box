@@ -1,6 +1,6 @@
-import React from 'react'
-import './MovieScroll.css'
-import PropTypes from 'prop-types'
+import React from 'react';
+import './MovieScroll.css';
+import PropTypes from 'prop-types';
 
 const MovieScroll = ({ scrollData }) => {
 	const chooseRandomScroll = scrollData[3].results[Math.floor(Math.random() * scrollData.length)]
@@ -23,7 +23,7 @@ const MovieScroll = ({ scrollData }) => {
 }
 
 MovieScroll.propTypes = {
-	scrollData: PropTypes.object.isRequired
+	scrollData: PropTypes.array.isRequired
 }
 
 export default MovieScroll
