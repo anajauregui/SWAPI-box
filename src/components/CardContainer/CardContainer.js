@@ -5,38 +5,21 @@ import './CardContainer.css'
 
 const CardContainer = ({ peopleArray, planetArray, vehicleArray, display, scrollData, addToFaves, favesArray }) => {
 	const peopleCardArray = peopleArray.map((el, index) => {
-		return (
-			<Cards
-				key={index}
-				fullObj={el}
-				addToFaves={addToFaves}
-				favesArray={favesArray}
-			/>
-		)
+		return <Cards key={index} fullObj={el} addToFaves={addToFaves} favesArray={favesArray} />
 	})
 	const planetCardArray = planetArray.map((el, index) => {
-		return (
-			<Cards
-				key={index}
-				fullObj={el}
-				addToFaves={addToFaves}
-				favesArray={favesArray}
-			/>
-		)
+		return <Cards key={index} fullObj={el} addToFaves={addToFaves} favesArray={favesArray} />
 	})
 	const vehicleCardArray = vehicleArray.map((el, index) => {
-		return (
-			<Cards
-				key={index}
-				fullObj={el}
-				addToFaves={addToFaves}
-				favesArray={favesArray}
-			/>
-		)
+		return <Cards key={index} fullObj={el} addToFaves={addToFaves} favesArray={favesArray} />
 	})
 
-	const favesCardArray = favesArray.lenth > 0 ? favesArray.map((fave, index) => <Cards key={index} fullObj={fave} addToFaves={addToFaves} favesArray={favesArray}/>) : <p>No Favorites!!!</p>
-
+	const favesCardArray =
+		favesArray.lenth !== 0
+			? favesArray.map((fave, index) =>
+					<Cards key={index} fullObj={fave} addToFaves={addToFaves} favesArray={favesArray} />
+				)
+			: <p>No Favorites!!!</p>
 
 	return (
 		<section className="card-container">
